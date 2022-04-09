@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:kick("disble)
+game.Players.LocalPlayer:kick("disble")

@@ -1,0 +1,588 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Blad3Hub/ExecTrack/main/README.md"))()
+
+local gId = game.PlaceId
+
+function SendWebhook(WebhookURL,Content)
+    local request = (syn and syn.request) or (http and http.request ) or http_request or (fluxus and fluxus.reqeust) or getgenv().request or reqeust
+    local TsukiLGBlack = "https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.15752-9/309880349_504873304813517_1593713628658156174_n.png?stp=dst-png_p1080x2048&_nc_cat=110&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeEO_7UDVdR8eypa_NldGoOkYpUbjIq4NLJilRuMirg0skUdoEOXClcFM2iRpBKLAefolyyIAzAeKUpZtJ5o-1_r&_nc_ohc=7HQQyQWKPewAX8a1xd7&_nc_ht=scontent.fbkk30-1.fna&oh=03_AdQ9mK0L2tKoEnmqa_qC0xugsZcjuCuNACGBKbeRex5Uaw&oe=63820AA2"
+    local TsukiLG = "https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.15752-9/309862050_1273392760077513_3907956495463737760_n.png?_nc_cat=110&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeGe-BRxULUYauKHCbKdaJEhBzCZXdz_rxMHMJld3P-vE3j_249dQwBT9eixiMsMZUd9sfOFbWy6OyBYxVeEGYPd&_nc_ohc=Pf2Kn5-mxSkAX-j9jeM&_nc_ht=scontent.fbkk30-1.fna&oh=03_AdRxxhDYY_HTFjszboIIJIAzQR24kXX66qySPFGC5_TY6Q&oe=63851428"
+    
+    request({
+        Method = "POST",
+        Url = WebhookURL,
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = game:GetService("HttpService"):JSONEncode({
+            username = "Tsuki Hub : User Executed",
+            ["avatar_url"] = "https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.15752-9/309880349_504873304813517_1593713628658156174_n.png?_nc_cat=110&ccb=1-7&_nc_sid=ae9488&_nc_ohc=ym9qdy1c3FYAX-YlrcV&_nc_ht=scontent.fbkk30-1.fna&oh=03_AVIntem5y3CAt3LVTqgSyyDg0uFAWovEknQPor4mGes3BQ&oe=636A4FA2",
+            content = "",
+            ["embeds"] = {
+                {
+                ["type"] = "rich",
+                ["author"] = {
+                    ["name"] = "Tsuki : Webhook",
+                    ["icon_url"] = "https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.15752-9/309880349_504873304813517_1593713628658156174_n.png?stp=dst-png_p1080x2048&_nc_cat=110&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeEO_7UDVdR8eypa_NldGoOkYpUbjIq4NLJilRuMirg0skUdoEOXClcFM2iRpBKLAefolyyIAzAeKUpZtJ5o-1_r&_nc_ohc=7HQQyQWKPewAX8a1xd7&_nc_ht=scontent.fbkk30-1.fna&oh=03_AdQ9mK0L2tKoEnmqa_qC0xugsZcjuCuNACGBKbeRex5Uaw&oe=63820AA2"
+                },
+                ["color"] = tonumber(0x8E3BED),
+                ["description"] = Content,
+            
+                ["timestamp"] = "",
+                    
+                    ["thumbnail"] = {
+                        ["url"] = TsukiLG
+                    },
+                    ["footer"]= {
+                        ["text"] = "Tsuki - "..os.date("%X"),
+                        ["icon_url"] = TsukiLGBlack
+                    },    
+                }
+            }
+        })
+    })
+end
+
+spawn(function() -- Auto Rejoin If Got Kicked
+    while true do wait()
+        getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(Kick)
+            if Kick.Name == "ErrorPrompt" and Kick:FindFirstChild("MessageArea") and Kick.MessageArea:FindFirstChild("ErrorFrame") then
+                game:GetService("TeleportService"):Teleport(game.PlaceId)
+                wait(60)
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            game:GetService("CoreGui").SimpleSpy:Destroy()
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            game:GetService("CoreGui").SimpleSpy2:Destroy()
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            game:GetService("CoreGui").TurtleSpyGUI:Destroy()
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoFarm then
+                CreatPart()
+                wait(999)
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.FarmMode == "Under" then
+                game:GetService("Workspace").Barriers.Part:Destroy()
+                        
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.sStrength then
+                game:GetService("ReplicatedStorage").Remotes.Strength:FireServer(_G.StatPoint)
+            elseif _G.sAgility then
+                game:GetService("ReplicatedStorage").Remotes.Agility:FireServer(_G.StatPoint)
+            elseif _G.sDefense then
+                game:GetService("ReplicatedStorage").Remotes.Durability:FireServer(_G.StatPoint)
+            end
+        end)
+    end
+end)
+
+
+
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.HideUI then
+                game:GetService("CoreGui").BladeZ.Main.Visible = false
+                game:GetService("CoreGui").BladeZ.LoadFrame.Visible = false
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoFarm then
+                if _G.SelectedEnemy == "Weak Nomu" then
+                    _G.SelectedEnemy = "Weak Nomu 1"
+                elseif _G.SelectedEnemy == "High End" then
+                    _G.SelectedEnemy ="High End 1"
+                elseif _G.SelectedEnemy == "AllMight" then
+                    _G.SelectedEnemy = "All Might 1"
+                elseif _G.SelectedEnemy == "Pro Hero" then
+                    _G.SelectedEnemy = "Pro Hero 1"
+                end
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            Click()
+            wait(60)
+        end)
+    end
+end)
+
+function TpToFarmLocation()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = _G.FarmPartLocation
+end
+
+function CreatPart()
+    if not game:GetService("Workspace"):FindFirstChild("?") then
+    local FarmPart = Instance.new("Part")
+    FarmPart.Name = "?"
+    FarmPart.Parent = game.Workspace
+    FarmPart.Anchored = true
+    FarmPart.Transparency = 0.8
+    FarmPart.Size = Vector3.new(10,1,10)
+    FarmPart.Material = "Neon"
+    end
+end
+
+function CheckRejoinTime()
+    _G.RejoinTime = _G.RejoinTime * 60
+end
+
+function MovePart()
+    game.Workspace["?"].CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-3.61,0)
+end
+
+function ReCharacter()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.EquipPistol then
+                game:GetService("ReplicatedStorage").WeaponShop.Equip:FireServer("Pistol")
+                wait(3)
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoRejoin then
+                while wait(_G.RejoinTime) do
+                    if _G.AutoRejoin then
+                        game.Players.LocalPlayer:kick("Rejoining")
+                        game:GetService("TeleportService"):Teleport(gId, game:GetService("Players").LocalPlayer)
+                    end
+                end
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoFarm then
+                if _G.FarmMode == "Above" then
+                    _G.FarmPartLocation = game:GetService("Workspace").NPCs[_G.SelectedEnemy].HumanoidRootPart.CFrame * CFrame.new(0,_G.Distance,0)
+                elseif _G.FarmMode == "Under" then
+                     _G.FarmPartLocation = game:GetService("Workspace").NPCs[_G.SelectedEnemy].HumanoidRootPart.CFrame * CFrame.new(0,-_G.Distance,0)
+                end
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoFarm then
+                game.Workspace["?"].CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-3.61,0)
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoFarm then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = _G.FarmPartLocation
+                wait(1.2)
+            end
+        end)
+    end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoFarm then
+                local args = {
+                    [1] = game:GetService("Workspace").NPCs[_G.SelectedEnemy].HumanoidRootPart.CFrame
+                }
+                game:GetService("Players").LocalPlayer.Character.Main.Swing:FireServer(unpack(args))
+            end
+        end)
+    end
+end)
+
+function Click()
+    game:GetService"VirtualUser":CaptureController()
+    game:GetService"VirtualUser":Button1Down(Vector2.new(1280, 672))
+end
+
+local ClientIdWL = {
+    "b1d7aa41-24d0-49f7-a88b-d04e28741bfa", -- Arinchai sobmor Tester
+    "e4db5545-d26e-4b55-94ba-e248c6e19f89", -- 608297010046435341
+    "7DA3FD2C-D081-42A4-B342-EE87ADF9D65C", -- Nakawin Nobnorb
+    "2F20DBDF-8697-4B14-970B-285CA96E48F3", -- Wongsakon Bacana
+    "97EB82ED-ED2F-4140-9257-A8DFD5E8C6D3", -- 881705855366606929
+    "86dcdd93-c939-44ca-b3c7-5d3133443613", -- ด.ช. ไรไม่รู้
+    "F2B59D8C-5C2F-4DE6-9F8A-59FF76A25D10", -- 917761641515483156
+    "4FC9ED61-5007-45BD-AAEF-08DCC9669D66", -- ภาณุวัฒน์ ปั่นสันเที่ยะ
+    "C35FED7B-8C76-4B87-96BF-B7391F518A3D", -- อลงกรณ์ ถาวร
+    "9a222ccd-6583-4626-b796-fbdbd8fd4410", -- Jamikorn seetalee
+    "7A3DD3A6-F0F4-41ED-B1DC-C97D84C5204D", -- Thanakorn Suphap
+    "7EA825C3-B7E0-4A5D-9B25-712EDF374FEA", -- Deku Todoroki
+    "4ccbef3c-2fb6-4d04-bf06-19c8c2b5296f", --  Kirito Rov
+    "29B6BFDC-19A1-4426-9772-A611DA6064D0", -- Ohm SoSad
+    "E89EC761-408A-4EEB-8DD3-61C940C0E062", -- Izuru Despair
+    "031F426A-33B6-4699-97B3-C303076C09B9", -- HO Zxm
+    "c8631645-2acd-4a1d-9809-bdfc37c1cb1b", -- Kawin Sangpluem
+    "B57CC1D8-7698-4514-AED6-4174D465BDBA", -- Chinnawat Yoo
+    "148BDFF1-FB57-451C-A84B-B9E4B92AEB9B", -- N'Nanthawat Wachasatcha
+    "E1B8C9ED-633D-4EBB-8AC7-06BD8ECA2A0D", -- Kon Yoyo
+    "9067DF8A-D8D8-4056-86C9-C3A41A962EF5", -- Phasit Boat
+    "473FEEA4-95E2-480D-AF50-AE8DE325998D", -- Santi Klinmala Bitec
+    "0BA02E92-F030-40B9-B733-D37659DC6A6D", -- Coke kanok
+    "bb94aec0-bf7c-4663-be9b-28e8c8fdabce", -- Arnon Wongklom
+
+    --Premieum WL
+    
+    "CA122DCB-76D0-45B8-82F2-C114236DD52D", -- เอกณัฏฐ์ จันทร์หอม 1ข เพื่อนกู
+    "051C8200-33D8-4847-A43E-1E58FE242F0C" --???
+}
+
+if ClientIdWL[table.find(ClientIdWL,game:GetService("RbxAnalyticsService"):GetClientId())] == game:GetService("RbxAnalyticsService"):GetClientId() then
+    
+if gId == 1499872953 or gId == 7189802705 then
+
+if game:GetService("CoreGui"):FindFirstChild("BladeZ") then
+    game:GetService("CoreGui"):FindFirstChild("BladeZ"):Destroy()
+end
+
+local Library= loadstring(game:HttpGet("https://raw.githubusercontent.com/Blad3Hub/BladeUI/main/README.md"))()
+local Window = Library:Window("BladeZ",Color3.fromRGB(86, 14, 173), Enum.KeyCode.RightAlt)
+
+local MainSection = Window:Tab("Main")
+MainSection:Label("Auto Farm")
+
+local VEnemyList = {
+    "AllForOne",
+    "Awakened Tomura",
+    "Criminal",
+    "Dabi",
+    "Gigantomachia",
+    "High End",
+    "Muscular",
+    "Noumu",
+    "Overhaul",
+    "Tomura",
+    "Villain",
+    "Weak Nomu",
+    "Weak Villain"
+}
+
+MainSection:Dropdown("Select Enemy(Villain)", VEnemyList, function(VEnemy)
+    _G.SelectedEnemy = VEnemy
+end)
+
+local HEnemyList = {
+    "AllMight",
+    "Deku",
+    "Endeavor",
+    "Forest Beast",
+    "Gang Orca",
+    "Hawks",
+    "Hero",
+    "Midnight",
+    "Mount Lady",
+    "Police",
+    "Present Mic",
+    "Pro Hero",
+    "UA Student"
+}
+
+MainSection:Dropdown("Select Enemy(Hero)", HEnemyList, function(HEnemy)
+    _G.SelectedEnemy = HEnemy
+end)
+
+MainSection:Dropdown("Farm Mode", {"Above","Under"}, function(FarmModes)
+    _G.FarmMode = FarmModes
+end)
+
+MainSection:Slider("Distance",10,500,125,function(s)
+    _G.Distance = s
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = _G.FarmPartLocation
+end)
+
+MainSection:Toggle("Eneble",false, function(s)
+    _G.AutoFarm = s
+    CreatPart()
+    MovePart()
+end)
+
+MainSection:Label("Auto Farm Misc")
+
+MainSection:Toggle("Auto Equip Pistol",false, function(s)
+    _G.EquipPistol = s
+end)
+
+MainSection:Toggle("Anchor Character",false, function(s)
+    _G.AnchorC = s
+    while wait() do
+        pcall(function()
+            if _G.AnchorC == true then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+                wait(1.5)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+                wait(0.00000001)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+            elseif _G.AnchorC == false then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+            end
+        end)
+    end
+end)
+
+local QuirkSection = Window:Tab("Quirk")
+QuirkSection:Label("Spin To Find Quirk")
+
+function CheckWantQuirk()
+    if _G.SelectedQuirk == "Deku's OFA" then
+        _G.WantedQuirk = 13
+    elseif _G.SelectedQuirk == "Tomura's AFO" then
+        _G.WantedQuirk = 34
+    elseif _G.SelectedQuirk == "All For One" then
+        _G.WantedQuirk = 30
+    elseif _G.SelectedQuirk == "Explosion" then
+        _G.WantedQuirk = 6
+    elseif _G.SelectedQuirk == "Fierce Wings" then
+        _G.WantedQuirk = 33
+    elseif _G.SelectedQuirk == "HHHC" then
+        _G.WantedQuirk = 1
+    elseif _G.SelectedQuirk == "One For All" then
+        _G.WantedQuirk = 2
+    elseif _G.SelectedQuirk == "Overhaul" then
+        _G.WantedQuirk = 16
+    elseif _G.SelectedQuirk == "Creation" then
+        _G.WantedQuirk = 28
+    elseif _G.SelectedQuirk == "Cremation" then
+        _G.WantedQuirk = 19
+    elseif _G.SelectedQuirk == "Dark Shadow" then
+        _G.WantedQuirk = 20
+    elseif _G.SelectedQuirk == "Decay" then
+        _G.WantedQuirk = 26
+    elseif _G.SelectedQuirk == "Frog" then
+        _G.WantedQuirk = 32
+    elseif _G.SelectedQuirk == "Manifest" then
+        _G.WantedQuirk = 36
+    elseif _G.SelectedQuirk == "Muscle Augmentation" then
+        _G.WantedQuirk = 21
+    elseif _G.SelectedQuirk == "Orcinus" then
+        _G.WantedQuirk = 35
+    elseif _G.SelectedQuirk == "Quirkless" then
+        _G.WantedQuirk = 3
+    elseif _G.SelectedQuirk == "Acid" then
+        _G.WantedQuirk = 27
+    elseif _G.SelectedQuirk == "Air Propulsion" then
+        _G.WantedQuirk = 11
+    elseif _G.SelectedQuirk == "Black Hole" then
+        _G.WantedQuirk = 18
+    elseif _G.SelectedQuirk == "Clones" then
+        _G.WantedQuirk = 29
+    elseif _G.SelectedQuirk == "Electrification" then
+        _G.WantedQuirk = 7
+    elseif _G.SelectedQuirk == "Hellflame" then
+        _G.WantedQuirk = 15
+    elseif _G.SelectedQuirk == "Permeation" then
+        _G.WantedQuirk = 22
+    elseif _G.SelectedQuirk == "Pop Off" then
+        _G.WantedQuirk = 23
+    elseif _G.SelectedQuirk == "Shock Absorption" then
+        _G.WantedQuirk = 12
+    elseif _G.SelectedQuirk == "Warp Gate" then
+        _G.WantedQuirk = 8
+    elseif _G.SelectedQuirk == "Big Fist" then
+        _G.WantedQuirk = 37
+    elseif _G.SelectedQuirk == "Engine" then
+        _G.WantedQuirk = 0
+    elseif _G.SelectedQuirk == "Gigantification" then
+        _G.WantedQuirk = 9
+    elseif _G.SelectedQuirk == "Hardening" then
+        _G.WantedQuirk = 14
+    elseif _G.SelectedQuirk == "Jet" then
+        _G.WantedQuirk = 17
+    elseif _G.SelectedQuirk == "Navel Laser" then
+        _G.WantedQuirk = 25
+    elseif _G.SelectedQuirk == "Somnambulist" then
+        _G.WantedQuirk = 24
+    elseif _G.SelectedQuirk == "Regeneration" then
+        _G.WantedQuirk = 5
+    elseif _G.SelectedQuirk == "Tail" then
+        _G.WantedQuirk = 31
+    elseif _G.SelectedQuirk == "Voice" then
+        _G.WantedQuirk = 10
+    elseif _G.SelectedQuirk == "Zero Gravity" then
+        _G.WantedQuirk = 4
+    end
+end
+
+spawn(function()
+    local LPName = game.Players.LocalPlayer.Name
+    while wait() do
+        _G.LPQuirk = game:GetService("Workspace").S1c2R5i66p5t5s51.PlayerData[LPName].Quirk.Value
+        pcall(function()
+            if _G.SpiningQuirk then
+                if _G.LPQuirk ~= _G.WantedQuirk then
+                    workspace.S1c2R5i66p5t5s51.Spin.Spinner:InvokeServer("Commons")
+                end
+            end
+        end)
+    end
+end)
+
+local QuirkList = {
+    "Deku's OFA",
+    "Tomura's AFO",
+    "All For One",
+    "Explosion",
+    "Fierce Wings",
+    "HHHC",
+    "One For All",
+    "Overhaul",
+    "Creation",
+    "Cremation",
+    "Dark Shadow",
+    "Decay",
+    "Frog",
+    "Manifest",
+    "Muscle Augmentation",
+    "Orcinus",
+    "Quirkless",
+    "Acid",
+    "Air Propulsion",
+    "Black Hole",
+    "Clones",
+    "Electrification",
+    "Hellflame",
+    "Permeation",
+    "Pop Off",
+    "Shock Absorption",
+    "Warp Gate",
+    "Big Fist",
+    "Engine",
+    "Gigantification",
+    "Hardening",
+    "Jet",
+    "Navel Laser",
+    "Somnambulist",
+    "Regeneration",
+    "Tail",
+    "Voice",
+    "Zero Gravity"
+}
+QuirkSection:Dropdown("Select Quirk", QuirkList, function(s)
+    _G.SelectedQuirk = s
+    CheckWantQuirk()
+end)
+QuirkSection:Toggle("Spin",false, function(s)
+    _G.SpiningQuirk = s
+end)
+
+local AutoStatSection = Window:Tab("Auto Stat")
+AutoStatSection:Label("Auto Stat")
+
+AutoStatSection:Toggle("Strength",false, function(s)
+    _G.sStrength = s
+end)
+
+AutoStatSection:Toggle("Agility",false, function(s)
+    _G.sAgility = s
+end)
+
+AutoStatSection:Toggle("Defense",false, function(s)
+    _G.sDefense = s
+end)
+
+_G.StatPoint = 1
+AutoStatSection:Slider("Points",1,100,1,function(s)
+    _G.StatPoint = s
+end)
+
+local MiscSection = Window:Tab("Misc")
+
+MiscSection:Toggle("Auto Rejoin",false, function(s)
+    _G.AutoRejoin = s
+end)
+
+MiscSection:Slider("RejoinTime(Minute)",1,60,1,function(s)
+    _G.RejoinTime = s
+    CheckRejoinTime()
+end)
+
+MiscSection:Button("Fast Mode", function()
+    game:GetService("CoreGui").BladeZ:Destroy()
+end)
+
+MiscSection:Label("UI And Discord Misc")
+
+MiscSection:Button("Destroy UI", function()
+    game:GetService("CoreGui").BladeZ:Destroy()
+end)
+MiscSection:Label("UI Toggle Key:  Right-Alt")
+MiscSection:Button("Copy Discord Invite", function()
+    setclipboard("https://discord.gg/DCDUYbn8yX")
+    Library:Notification("Notification", "Copied!", "Close")
+end)
+
+SendWebhook("https://discord.com/api/webhooks/1036975475672752148/4aG1kvzBTaZm2lKYziCYMM5SBjwX0wqiO_SQxLBK9tfvJaOW7ISh00s1lL9368_aSYRn","**"..game.Players.LocalPlayer.Name.."** Was Executed The Boku No Roblox (Autofarm Script)")
+
+else game.Players.LocalPlayer:kick("Wrong Game")
+    wait(1)
+    game:GetService("TeleportService"):Teleport(gId, game:GetService("Players").LocalPlayer)
+end
+
+else 
+    game.Players.LocalPlayer:kick("Wrong HWID")
+end -- gIdCheck
